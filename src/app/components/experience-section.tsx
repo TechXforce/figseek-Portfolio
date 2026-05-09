@@ -47,16 +47,16 @@ const experiences = [
 
 function PhotoCard({ image, company }: { image: string; company: string }) {
   return (
-    <div className="p-1 rounded-2xl bg-gradient-to-b from-white/5 to-white/0 border border-white/10 backdrop-blur-sm overflow-hidden h-full">
-      <div className="relative w-full h-full min-h-[320px] rounded-xl overflow-hidden">
+    <div className="p-1 rounded-2xl bg-gradient-to-b from-white/5 to-white/0 border border-white/10 backdrop-blur-sm overflow-hidden h-48 md:h-full">
+      <div className="relative w-full h-full min-h-[200px] md:min-h-[320px] rounded-xl overflow-hidden">
         <img
           src={image}
           alt={`Working at ${company}`}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-white text-sm font-medium bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 inline-block">
+        <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4">
+          <p className="text-white text-xs md:text-sm font-medium bg-black/50 backdrop-blur-sm rounded-lg px-2 md:px-3 py-1 md:py-1.5 inline-block">
             📍 {company}
           </p>
         </div>
@@ -70,29 +70,29 @@ export function ExperienceSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section id="experience" className="relative py-32 overflow-hidden">
+    <section id="experience" className="relative py-20 md:py-32 overflow-hidden">
 
-      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Experience
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <div className="w-20 md:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 md:mb-8"></div>
+          <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto">
             My professional journey across industries and borders
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500"></div>
+          {/* Timeline Line - hidden on mobile, visible on desktop */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500"></div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.company}
@@ -101,10 +101,10 @@ export function ExperienceSection() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="relative"
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-4 border-black z-10"></div>
+                {/* Timeline Dot - hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-4 border-black z-10"></div>
 
-                {/* Desktop Layout: Side by side */}
+                {/* Desktop Layout */}
                 <div className="hidden md:grid md:grid-cols-2 gap-8 items-stretch">
                   {index % 2 === 0 ? (
                     <>
@@ -143,8 +143,8 @@ export function ExperienceSection() {
                   )}
                 </div>
 
-                {/* Mobile Layout: Stacked */}
-                <div className="md:hidden space-y-4 pl-8">
+                {/* Mobile Layout - Stacked */}
+                <div className="md:hidden space-y-3">
                   <ExperienceCard exp={exp} />
                   <PhotoCard image={exp.image} company={exp.company} />
                 </div>
@@ -159,32 +159,32 @@ export function ExperienceSection() {
 
 function ExperienceCard({ exp }: { exp: any }) {
   return (
-    <div className="p-6 rounded-2xl bg-gradient-to-b from-white/5 to-white/0 border border-white/10 backdrop-blur-sm hover:border-white/20 transition-all duration-300 h-full">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
-          <Briefcase className="w-5 h-5 text-blue-400" />
+    <div className="p-4 md:p-6 rounded-2xl bg-gradient-to-b from-white/5 to-white/0 border border-white/10 backdrop-blur-sm hover:border-white/20 transition-all duration-300 h-full">
+      <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
+          <Briefcase className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
         </div>
         <div className="flex-1">
-          <h3 className="text-xl font-bold text-white">{exp.position}</h3>
-          <p className="text-blue-400 font-semibold">{exp.company}</p>
-          <p className="text-gray-500 text-xs">{exp.location}</p>
+          <h3 className="text-base md:text-xl font-bold text-white">{exp.position}</h3>
+          <p className="text-sm md:text-base text-blue-400 font-semibold">{exp.company}</p>
+          <p className="text-xs text-gray-500">{exp.location}</p>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-        <Calendar className="w-4 h-4" />
+      <div className="flex items-center gap-2 text-xs md:text-sm text-gray-400 mb-3 md:mb-4">
+        <Calendar className="w-3 h-3 md:w-4 md:h-4" />
         <span>{exp.period}</span>
       </div>
 
-      <p className="text-gray-300 mb-4 leading-relaxed">
+      <p className="text-sm md:text-base text-gray-300 mb-3 md:mb-4 leading-relaxed">
         {exp.description}
       </p>
 
-      <div className="space-y-2">
+      <div className="space-y-1.5 md:space-y-2">
         {exp.achievements.map((achievement: string) => (
-          <div key={achievement} className="flex items-start gap-2">
-            <span className="text-blue-400 mt-1">▸</span>
-            <span className="text-gray-400 text-sm">{achievement}</span>
+          <div key={achievement} className="flex items-start gap-1.5 md:gap-2">
+            <span className="text-blue-400 mt-1 text-xs md:text-sm">▸</span>
+            <span className="text-xs md:text-sm text-gray-400">{achievement}</span>
           </div>
         ))}
       </div>
