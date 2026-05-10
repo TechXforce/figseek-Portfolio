@@ -56,14 +56,14 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo - hidden on mobile hero, visible on scroll + desktop */}
             <motion.a
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection('#home');
               }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              className={`text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}
               whileHover={{ scale: 1.05 }}
             >
               KJC
